@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
-import { placeService } from '../service';
+import { areaService } from '../service';
 
 
-class PlaceHandler {
+class AreaHandler {
 
-    public async createPlace(request: Request, response: Response) {
+    public async createAreas(request: Request, response: Response) {
         try {
             const payload = request.body;
-            this.validatePayload(payload);
-            const places = await placeService.createPlace(payload);
+            //changes
+            // this.validatePayload(payload);
+            const places = await areaService.createAreas(payload);
             response.status(200).json(places)
         } catch (error: any) {
             response.status(500).json({ message: error.message });
@@ -24,38 +25,36 @@ class PlaceHandler {
 
     }
 
-    public async getPlaceByCordinantes(request: Request, response: Response) {
+    public async getAnArea(request: Request, response: Response) {
         try {
-            const queryObject = request.query;
-            this.validateLatAndLongitude(queryObject);
-            const place = await placeService.getPlaceDetailByCoordinateS(queryObject);
-            response.status(200).json(place)
+            const point = request.body;
+            const area = await areaService.getArea(point);
+            response.status(200).json(area)
         } catch (error: any) {
             response.status(500).json({ message: error.message })
         }
     }
 
-    public async updatePlaceByCoordinates(request: Request, response: Response) {
+    public async updateAnArea(request: Request, response: Response) {
         try {
             const updateObj = request.body;
             if(Object.keys(updateObj).length==0){
                 throw new Error('Please provide a update object')
-            }
-            const queryObj = request.query;
-            this.validateLatAndLongitude(queryObj);
-            const place = await placeService.updatePlaceByCoordinates(updateObj, queryObj)
+            }           
+            this.validatePolygonObj(updateObj.multiPolygon);
+            const place = await areaService.updateAnArea(updateObj)
             response.status(200).json(place)
         } catch (error: any) {
             response.status(500).json({ message: error.message });
         }
     }
 
-    public validateLatAndLongitude(queryObj: any) {
-        if (!queryObj.latitude || !queryObj.longitude) {
-            throw new Error("Please cross verify the lat and long points");
+    public validatePolygonObj(polygon: any) {
+        if (!polygon.type || !polygon.coordinates) {
+            throw new Error("Please cross verify the polygon Object");
         }
     }
 }
 
-const placeHanldler = new PlaceHandler();
-export default placeHanldler;
+const areaHandler = new AreaHandler();
+export default areaHandler;

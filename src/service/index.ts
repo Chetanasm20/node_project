@@ -1,3 +1,4 @@
-import placeService from "./place-service";
+import locationService from "./location-service";
+import areaService from "./area-service";
 
-export {placeService}
+export {locationService,areaService }

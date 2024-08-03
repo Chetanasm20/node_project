@@ -1,3 +1,4 @@
-import { PlaceSchema } from "./schema";
+import {  LocationSchema,AreaSchema } from "./schema";
 
-export{PlaceSchema};
+
+export{LocationSchema,AreaSchema};

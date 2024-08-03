@@ -1,9 +1,10 @@
 
-import placeRoute from "./api/place-route";
+import locationRoute from "./api/location-routes";
 import express from 'express';
 import { PortConfiguration,HostConfiguartion } from "../config";
 import cors from 'cors';
 import { mongoConfiguration } from "../db";
+import areaRoute from "./api/area-routes";
 
 export const app=express()
 const PORT:number=PortConfiguration.getPortUrl();
@@ -19,5 +20,8 @@ export const startServer = (): void => {
       console.log(`Server is Up and Running on http://${HOST}:${PORT},`);
     });
   };
-app.use('/places',placeRoute)
+app.use('/locations',locationRoute)
+app.use('/areas',areaRoute)
+
+
 

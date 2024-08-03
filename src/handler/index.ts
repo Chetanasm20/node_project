@@ -1,3 +1,4 @@
-import placeHandler from "./place-handler";
+import placeHandler from "./location-handler";
+import areaHandler from "./area-handler";
 
-export {placeHandler}
+export {placeHandler,areaHandler}

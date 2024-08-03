@@ -1,4 +1,4 @@
 import mongoConfiguration from "./mongodb/db";
-import { PlaceSchema } from "./mongodb";
+import { LocationSchema,AreaSchema } from "./mongodb";
 
-export {mongoConfiguration,PlaceSchema};
+export {mongoConfiguration,LocationSchema,AreaSchema};

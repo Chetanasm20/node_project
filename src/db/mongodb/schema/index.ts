@@ -1,3 +1,5 @@
-import PlaceSchema from "./place-schema";
+import LocationSchema from "./location-schema";
+import AreaSchema from "./area-schema";
 
-export {PlaceSchema}
+
+export {LocationSchema,AreaSchema }
