@@ -13,9 +13,8 @@ class MongoDbConfiguration {
       dbConfiguration.port != undefined ? ':' + dbConfiguration.port : ''
     }/${dbConfiguration.name}`;
     if (mongoose.connection.readyState === this.MONGO_DISCONNECTED) {
-      console.log("URL ",URL);
-      
-      await mongoose.connect("mongodb://admin:password@localhost:27022/TVS_CCP_CATALOG");
+      console.log("URL ",URL);     
+      await mongoose.connect(URL);
       return true;
     }
   };
